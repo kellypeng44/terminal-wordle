@@ -50,5 +50,69 @@ def play_wordle():
     else:
         print(f"Out of tries😢 The word was: {answer}")
 
+LETTER_5x5 = {
+    "W": [
+        "*   *",
+        "*   *",
+        "* * *",
+        "* * *",
+        " * * "
+    ],
+    "O": [
+        "*****",
+        "*   *",
+        "*   *",
+        "*   *",
+        "*****"
+    ],
+    "R": [
+        "**** ",
+        "*   *",
+        "**** ",
+        "*  * ",
+        "*   *"
+    ],
+    "D": [
+        "**** ",
+        "*   *",
+        "*   *",
+        "*   *",
+        "**** "
+    ],
+    "L": [
+        "*    ",
+        "*    ",
+        "*    ",
+        "*    ",
+        "*****"
+    ],
+    "E": [
+        "*****",
+        "*    ",
+        "**** ",
+        "*    ",
+        "*****"
+    ]
+}
+
+def render_banner(text="WORDLE", ch="*"):
+    text = text.upper()
+    rows = [""] * 5
+    for idx, c in enumerate(text):
+        if c not in LETTER_5x5:
+            # blank 5x5 if unknown
+            glyph = ["     "] * 5
+        else:
+            glyph = LETTER_5x5[c]
+        # swap the drawing character
+        glyph = [line.replace("*", ch) for line in glyph]
+        # add a single space between letters
+        for r in range(5):
+            rows[r] += ("" if idx == 0 else " ") + glyph[r]
+    return "\n".join(rows)
+
 if __name__ == "__main__":
+    print()
+    print(render_banner("WORDLE", ch="*"))
+    print()
     play_wordle()
