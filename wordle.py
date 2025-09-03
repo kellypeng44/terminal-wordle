@@ -23,8 +23,7 @@ def check_guess(guess, answer):
     return "".join(result)
 
 def play_wordle():
-    # answer = pick_word(ANSWER_LIST)
-    answer = "might"
+    answer = pick_word(ANSWER_LIST)
     attempts = 6
 
     print("Guess the Wordle in 6 tries. \n")
